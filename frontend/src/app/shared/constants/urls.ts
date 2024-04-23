@@ -1,4 +1,6 @@
-const BASE_URL = 'http://localhost:5000';
+import { environment } from "../../../environments/environment";
+
+const BASE_URL = environment.production? '' : 'http://localhost:5000';
 
 export const EVENTLOGS_URL = BASE_URL + '/api/eventlogs'; 
 export const EVENTLOGS_BY_ID_URL = EVENTLOGS_URL + '/'; 
