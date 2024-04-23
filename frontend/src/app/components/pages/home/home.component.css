@@ -1,0 +1,158 @@
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.panel-administracion {
+    padding: 4rem 0;
+}
+
+/** Listado de Eventos**/
+.seccion-eventos{
+    padding-top: 2rem;
+}
+.seccion-eventos li {
+    padding: 1rem 0;
+    border-bottom:  1px solid #E6E6E6;
+}
+
+.seccion-eventos li:last-of-type{
+    border-bottom: none;
+}
+@media (min-width:768px) {
+    .seccion-eventos li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+}
+.seccion-eventos .fecha,
+.seccion-eventos h3 {
+    margin: 0;
+}
+.informacion-eventos {
+    flex: 0 0 35%;
+    margin-right: 2rem;
+}
+.informacion-eventos small {
+    font-weight: 700;
+    font-size: .8rem;
+}
+.acciones.contenedor-botones a {
+    flex: 1;
+}
+.acciones.contenedor-botones {
+    width: 100%;
+}
+
+.informacion-eventos .fecha {
+    font-size: .8rem;
+}
+
+ul {
+    list-style: none;padding: 0;
+}
+
+/** eventos **/
+.panel-administracion {
+    padding: 4rem 0;
+}
+.contenedor-botones {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.contenedor-botones a {
+    margin-bottom: 1rem;
+}
+
+@media (min-width:768px) {
+    .contenedor-botones {
+        display: flex;
+        flex-direction: row;
+    }
+    .contenedor-botones a {
+        flex: 1;
+        margin-bottom: 0;
+        margin-right: 2rem;
+    }
+    .contenedor-botones a:last-of-type{
+        margin-right: 0;
+    }
+}
+
+/** botones **/
+.btn {
+    padding: 1rem 4rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border: none;
+    background-color: transparent;
+    color:white;
+    width: 100%;
+    display: block;
+    flex : 0 0 100%;
+}
+@media (min-width: 768px) {
+    .btn {
+        width: auto;
+        display: inline-block;
+        flex: 0 0 auto;
+    }
+}
+
+.btn-verde {
+    background-color: #688E26;
+}
+
+.btn-rojo {
+    background-color: #92140C;
+}
+
+a.btn-rojo:hover{
+    background: #e72929;
+    color: white;
+    cursor: pointer;
+}
+
+a.btn-verde:hover{
+    background: #74a225;
+    color: white;
+    cursor: pointer;
+}
+
+h1{
+    font-family: 'Staatliches';
+    font-size: 2.8rem;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Staatliches';
+    font-size: 2.8rem;
+}
+
+h3 {
+    text-align: left;
+    font-family: 'Raleway', sans-serif;
+    font-size: 2rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+small{
+    font-weight: 700;
+    font-size: .8rem;
+    font: 1em sans-serif;
+}
+
+p {
+    line-height: 2;
+    font: status-bar;
+}
+

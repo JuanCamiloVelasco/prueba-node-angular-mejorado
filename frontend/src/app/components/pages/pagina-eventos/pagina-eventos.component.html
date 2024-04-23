@@ -1,0 +1,25 @@
+<app-no-encontrado [visible]="!evento" mensajeNoEncontrado="Evento no encontrado" resetLinkText="Volver a la pagina principal"></app-no-encontrado>
+<div *ngIf="evento" class="container">
+
+    <div class="detalles">
+        <div class="header">
+            <h1>{{evento.nombre}}</h1>
+        </div>
+        
+        <div class="tiempo-cocina">
+            <small>
+                fecha del evento: {{fechasFormat(evento.fecha)}}
+            </small>
+        </div>
+
+        <div class="rating">
+            <h3>{{evento.descripcion}}</h3>
+        </div>
+
+        <div class="precio">
+            <span>
+                {{evento.tipo}}
+            </span>
+        </div>
+    </div>
+</div>

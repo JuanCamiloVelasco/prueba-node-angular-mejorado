@@ -1,0 +1,18 @@
+<div class="contenedor">
+    <div class="seccion-eventos">
+        <h1>Filtro de eventos</h1>
+        <div class="busca">
+            <h3>Filtro por tipo</h3>
+            <input #s type="text" placeholder="Busqueda Eventos" (keyup.enter)="search(s.value)" [value]="searchTerm" class="tipo"/>
+            <button (click)="search(s.value)">Buscar</button>
+        </div>
+        <div class="busca">
+            <h3>Filtro por fecha</h3>
+            <input #e type="date" placeholder="Desde" onfocus="(this.type='date')" onblur="(this.type='text')" class="fechas2"/>
+            <input #p type="date" placeholder="Hasta" onfocus="(this.type='date')" onblur="(this.type='text')" class="fechas"/>
+            <button (click)="BuscaFechas(e.value, p.value)">Buscar</button>
+        </div>
+    </div>
+</div>
+
+

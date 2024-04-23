@@ -1,0 +1,68 @@
+.container{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header{
+    position: relative;
+    background: white;
+    padding: 0;
+}
+
+a.logo{
+    font-weight: bold;
+    padding: 1rem;
+}
+
+a:hover{
+    background: #f2efef;
+    color: white;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    width: 30%;
+    margin: auto;
+}
+
+
+a {
+    font-size: 2.8rem;
+    text-align: center;
+    color: white;
+}
+
+/** botones **/
+.btn {
+    padding: 1rem 4rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border: none;
+    background-color: transparent;
+    color:white;
+    width: 100%;
+    display: block;
+    flex : 0 0 100%;
+}
+@media (min-width: 768px) {
+    .btn {
+        width: auto;
+        display: inline-block;
+        flex: 0 0 auto;
+    }
+}
+
+.btn-rosa {
+    background-color: #B8336A;
+    display: block;
+}
+
+a.btn-rosa:hover{
+    background: #ce266c;
+    color: white;
+    cursor: pointer;
+}
