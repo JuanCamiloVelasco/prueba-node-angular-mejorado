@@ -18,9 +18,9 @@ app.use((0, cors_1.default)({
     origin: ["http://localhost:4200"]
 }));
 app.use("/api/eventlogs/", event_log_router_1.default);
-app.use(express_1.default.static('public'));
+app.use(express_1.default.static(path_1.default.join('public', 'browser')));
 app.get('*', function (req, res) {
-    res.sendFile(path_1.default.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path_1.default.join(__dirname, 'public', 'browser', 'index.html'));
 });
 var port = process.env.PORT || 5000;
 app.listen(port, function () {

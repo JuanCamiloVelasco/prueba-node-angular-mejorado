@@ -4,8 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm install --force && ng build --configuration production",
-    "serve:ssr:frontend": "node dist/frontend/server/server.mjs"
+    "build": "npm install --force && ng build --configuration production"
   },
   "private": true,
   "dependencies": {
