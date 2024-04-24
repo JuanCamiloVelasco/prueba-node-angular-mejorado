@@ -3,7 +3,7 @@
         <h1>Registro</h1>
         <form [formGroup]="registerForm" (ngSubmit)="submit()">
             <text-input [control]="fc.nombre" [showErrorsWhen]="isSubmited" label="Nombre"></text-input>
-            <text-input [control]="fc.fecha" [showErrorsWhen]="isSubmited" type="date"></text-input>
+            <text-input [control]="fc.fecha" [showErrorsWhen]="isSubmited" label="Fecha" type="date"></text-input>
             <text-input [control]="fc.descripcion" [showErrorsWhen]="isSubmited" label="Descripcion"></text-input>
             <text-input [control]="fc.tipo" [showErrorsWhen]="isSubmited" label="Tipo"></text-input>
             <default-button text="Registrar"></default-button>
