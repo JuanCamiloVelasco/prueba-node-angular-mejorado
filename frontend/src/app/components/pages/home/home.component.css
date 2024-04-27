@@ -111,6 +111,10 @@ ul {
     background-color: #92140C;
 }
 
+.btn-azul {
+    background-color: #068D9D;
+}
+
 a.btn-rojo:hover{
     background: #e72929;
     color: white;
@@ -119,6 +123,12 @@ a.btn-rojo:hover{
 
 a.btn-verde:hover{
     background: #74a225;
+    color: white;
+    cursor: pointer;
+}
+
+a.btn-azul:hover{
+    background: #0796a6;
     color: white;
     cursor: pointer;
 }

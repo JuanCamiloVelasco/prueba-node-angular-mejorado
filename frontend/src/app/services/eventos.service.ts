@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Evento } from '../shared/models/Eventos';
-import { EVENTLOGS_BY_ID_URL, EVENTLOGS_URL, EVENTOS_DELETE_URL, EVENTOS_SEARCH_FECHA_URL, EVENTOS_SEARCH_TIPO_URL, EVENTO_REGISTER_URL } from '../shared/constants/urls';
+import { EVENTLOGS_BY_ID_URL, EVENTLOGS_URL, EVENTOS_DELETE_URL, EVENTOS_SEARCH_FECHA_URL, EVENTOS_SEARCH_TIPO_URL, EVENTO_REGISTER_URL, EVENTO_UPDATE_URL } from '../shared/constants/urls';
 import { IEventoRegister } from '../shared/interfaces/IEventoRegister';
 import { ToastrService } from 'ngx-toastr';
 
@@ -39,20 +39,30 @@ export class EventosService {
     return this.http.post<Evento>(EVENTO_REGISTER_URL, eventoRegister).pipe(
       tap({
         next: (evento) => {
-          this.setEventToLocalStorage(evento);
           this.toastrService.success(
-            `Se ha registrado el evento correctamente`,
+            `Se ha registrado el evento ${evento.nombre} correctamente`,
             'Registro exitoso'
           )
         }, error: (errorResponse) => {
-          this.toastrService.error(errorResponse.error, 'Registro fallido')
+          console.log(errorResponse);
+          this.toastrService.error('Registro fallido')
         }
       })
     );
   }
 
-  private setEventToLocalStorage(evento:Evento) {
-    localStorage.setItem(EVENTO_KEY, JSON.stringify(evento));
+  update(eventoId:string,eventoRegister:IEventoRegister): Observable<Evento>{
+    return this.http.put<Evento>(EVENTO_UPDATE_URL + eventoId, eventoRegister).pipe(
+      tap({
+        next: (evento) => {
+          this.toastrService.success(
+            `Se ha actualizado el ${evento.nombre} correctamente`,
+            'Actualizacion exitosa'
+          )
+        }, error: (errorResponse) => {
+          this.toastrService.error(errorResponse.error, 'Actualizacion fallida')
+        }
+      })
+    );
   }
-
 }

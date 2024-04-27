@@ -18,9 +18,7 @@ export class TextInputComponent {
   @Input()
   label!:string;
   @Input()
-  select!:string;
-  @Input()
-  type: 'text' | 'date' | 'text' | 'text' = 'text';
+  type: 'text' | 'date' | 'text' = 'text';
 
   get formControl() {
     return this.control as FormControl

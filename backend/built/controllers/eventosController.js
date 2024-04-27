@@ -72,7 +72,7 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
                 return [4 /*yield*/, Event_Logs_1.EventModel.create(evento)];
             case 1:
                 _a.sent();
-                res.send({ mensaje: 'El evento se ha creado correctamente' });
+                res.send(evento);
                 return [3 /*break*/, 3];
             case 2:
                 error_2 = _a.sent();

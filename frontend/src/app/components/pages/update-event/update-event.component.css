@@ -6,14 +6,22 @@
     margin-top: 3rem;
 }
 
+.details {
+    width: 25rem;
+}
+
+.inputs{
+    position:relative;
+    margin-bottom: 0.5rem;
+    border-radius: 0.7rem;
+    padding-top: 0.3rem;
+    border: 1px solid #e0e0e0;
+}
+
 h1{
     font-family: 'Staatliches';
     font-size: 2.8rem;
     text-align: center;
-}
-
-.details {
-    width: 25rem;
 }
 
 label{
@@ -24,6 +32,44 @@ label{
     font-size: 1rem;
     padding-right: 1rem;
     align-content: center;
+}
+
+.content{
+    padding: 0 0.5rem;
+    height: 2.7rem;
+    display: flex;
+    align-items: center;
+}
+
+input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-bottom: 0 solid grey;
+    transition: border-bottom 0.15s ease-out;
+    background-color: white;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+input::placeholder{
+    color: #dfdfdf;
+    font-size: 0.95rem;
+}
+
+input:focus{
+    border-width: 2.9px;   
+}
+
+input-validation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    height: 100%;
+    width: 12rem;
 }
 
 .select{

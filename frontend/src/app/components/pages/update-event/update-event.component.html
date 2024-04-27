@@ -1,0 +1,36 @@
+<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
+<div class="container">
+    <div class="details">
+        <h1>Actualizar</h1>
+        <div *ngIf="evento">
+            <form (ngSubmit)="actualizar()">
+                <div class="inputs">
+                    <label>Nombre</label>
+                    <div class="content">
+                        <input type="text" [(ngModel)]="evento.nombre" name="nombre">
+                    </div>
+                </div>
+                <div class="inputs">
+                    <label>Fecha</label>
+                    <div class="content">
+                        <input required min="5" type="date" [(ngModel)]="fecha" name="fecha">
+                    </div>
+                </div>
+                <div class="inputs">
+                    <label>Descripcion</label>
+                    <div class="content">
+                        <input type="text" [(ngModel)]="evento.descripcion" name="descripcion">
+                    </div>
+                </div>
+                <div class="select custom-select">
+                    <label>Tipo</label>
+                    <select [(ngModel)]="evento.tipo" name="tipo" id="tipo">
+                        <option selected disabled hidden>{{evento.tipo}}</option>
+                        <option *ngFor="let tipo of tipo" [ngValue]="tipo">{{tipo.name}}</option>
+                    </select>
+                </div>
+                <default-button text="Actualizar"></default-button>
+            </form>
+        </div>
+    </div>
+</div>

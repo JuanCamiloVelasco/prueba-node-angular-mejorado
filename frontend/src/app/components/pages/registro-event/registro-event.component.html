@@ -3,14 +3,16 @@
         <h1>Registro</h1>
         <form [formGroup]="registerForm" (ngSubmit)="submit()">
             <text-input [control]="fc.nombre" [showErrorsWhen]="isSubmited" label="Nombre"></text-input>
-            <text-input [control]="fc.fecha" [showErrorsWhen]="isSubmited" label="Fecha" type="date"></text-input>
+            <text-input [control]="fc.fecha" [showErrorsWhen]="isSubmited" label="Fecha" type="date" ></text-input>
             <text-input [control]="fc.descripcion" [showErrorsWhen]="isSubmited" label="Descripcion"></text-input>
-            <text-input [control]="fc.tipo" [showErrorsWhen]="isSubmited" label="Tipo"></text-input>
+            <div class="select custom-select">
+                <label>Tipo</label>
+                <select formControlName="tipo">
+                    <option value="" selected disabled>-- Elige un Tipo --</option>
+                    <option *ngFor="let t of tipo" [ngValue]="t.name">{{t.name}}</option>
+                </select>
+            </div>
             <default-button text="Registrar"></default-button>
         </form>
     </div>
 </div>
-<!-- 
-//<select [(ngModel)]="seleccionado" [ngModelOptions]="{standalone: true}">
-    <option *ngFor="let tipo of tipos" [ngValue]="tipo">{{tipo.name}}</option>
-</select> -->

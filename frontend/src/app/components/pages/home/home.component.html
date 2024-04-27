@@ -14,7 +14,8 @@
                     <small>{{evento.tipo}}</small>
                 </div>
                 <div class="acciones contenedor-botones">
-                    <a routerLink="/evento/{{evento.id}}" class="btn btn-verde">Informacion</a>
+                    <a routerLink="/infoEv/{{evento.id}}" class="btn btn-verde">Informacion</a>
+                    <a routerLink="/evento/{{evento.id}}" class="btn btn-azul">Editar</a>
                     <a (click)="deleteEvento(evento.id)" class="btn btn-rojo">Eliminar</a>
                 </div>
                 <h1 *ngIf="!evento">Aun no tienes Eventos creados</h1>

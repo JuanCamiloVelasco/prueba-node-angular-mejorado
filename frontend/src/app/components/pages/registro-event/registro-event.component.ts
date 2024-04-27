@@ -7,6 +7,8 @@ import { IEventoRegister } from '../../../shared/interfaces/IEventoRegister';
 import { TextInputComponent } from '../../partials/text-input/text-input.component';
 import { DefaultButtonComponent } from "../../partials/default-button/default-button.component";
 import { NgFor } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+import { tipos } from 'src/app/shared/constants/tipos';
 
 @Component({
     selector: 'app-registro-event',
@@ -19,16 +21,10 @@ export class RegistroEventComponent implements OnInit{
   registerForm!:FormGroup;
   isSubmited = false;
   returnUrl = '';
-  seleccionado = null
 
-  tipos = [
-    {name: "reunion"},
-    {name: "fiesta"},
-    {name: "incidente"},
-    {name: "deporte"}
- ];
+  tipo = tipos
 
-  constructor( private formBuilder:FormBuilder, private eventoService:EventosService, private activatedRoute:ActivatedRoute, private router:Router) { }
+  constructor( private formBuilder:FormBuilder, private eventoService:EventosService, private activatedRoute:ActivatedRoute, private router:Router, private toastrService:ToastrService) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -47,7 +43,12 @@ export class RegistroEventComponent implements OnInit{
 
   submit() {
     this.isSubmited = true;
-    if(this.registerForm.invalid) return console.log(this.registerForm);
+    if(this.registerForm.invalid) { 
+      this.toastrService.error(
+        `Ha ocurrido un error`,
+        'Registro invalido')
+      return;
+    }
 
     const fv = this.registerForm.value;
 
@@ -55,7 +56,7 @@ export class RegistroEventComponent implements OnInit{
       nombre: fv.nombre,
       fecha: fv.fecha,
       descripcion: fv.descripcion,
-      tipo: fv.tipo,
+      tipo: fv.tipo
     };
 
     this.eventoService.register(evento).subscribe(_ => {

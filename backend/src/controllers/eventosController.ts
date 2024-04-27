@@ -15,9 +15,10 @@ export const nuevoEvento = expressAsyncHandler(async( req, res, next) => {
     try {
         const evento = new EventModel(req.body);
         await EventModel.create(evento);
-        res.send({mensaje: 'El evento se ha creado correctamente'});
+        res.send(evento);
     } catch (error) {
         console.log(error);
+        res.send(error);
         next();
     }
 });
