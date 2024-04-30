@@ -6,7 +6,9 @@
       "outDir": "./built",
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
-      "esModuleInterop": true
+      "esModuleInterop": true,
+      "useUnknownInCatchVariables": false,
+      "noImplicitAny": false
     },
     "include": ["src/**/*"],
 }

@@ -2,12 +2,12 @@
 <app-no-encontrado [visible]="!eventos || !eventos.length" resetLinkText="Reiniciar Busqueda"></app-no-encontrado>
 <main class="contenedor panel-administracion">
     <div class="seccion-eventos">
-        <h1 *ngIf="eventos">Eventos</h1>
+        <h1 *ngIf="eventos.length">Eventos</h1>
         <ul>
             <li *ngFor="let evento of eventos">
                 <div class="informacion-eventos">
                     <h2 class="fecha">Fecha del evento: {{fechasFormat(evento.fecha)}}</h2>
-                    <a routerLink="/evento/{{evento.id}}">
+                    <a routerLink="/infoEv/{{evento.id}}">
                         <h3>{{evento.nombre}}</h3>
                     </a>
                     <p>{{evento.descripcion}}</p>
@@ -18,8 +18,8 @@
                     <a routerLink="/evento/{{evento.id}}" class="btn btn-azul">Editar</a>
                     <a (click)="deleteEvento(evento.id)" class="btn btn-rojo">Eliminar</a>
                 </div>
-                <h1 *ngIf="!evento">Aun no tienes Eventos creados</h1>
             </li>
         </ul>
+        <h1 *ngIf="!eventos">Aun no tienes Eventos creados</h1>
     </div>
 </main>

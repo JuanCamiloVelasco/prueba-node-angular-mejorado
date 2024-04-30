@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filtroTipo = exports.filtroFechas = exports.eliminarEvento = exports.obtenerEvId = exports.actualizarEvento = exports.nuevoEvento = exports.mostrarEventos = void 0;
+exports.filtroTipoFecha = exports.filtroTipo = exports.filtroFechas = exports.eliminarEvento = exports.obtenerEvId = exports.actualizarEvento = exports.nuevoEvento = exports.mostrarEventos = void 0;
 var express_async_handler_1 = __importDefault(require("express-async-handler"));
 var Event_Logs_1 = require("../models/Event.Logs");
 exports.mostrarEventos = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
@@ -56,14 +56,14 @@ exports.mostrarEventos = (0, express_async_handler_1.default)(function (req, res
             case 2:
                 error_1 = _a.sent();
                 console.log(error_1);
-                next();
+                res.send(error_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); });
 exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var evento, error_2;
+    var evento, error_2, mensaje;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -77,6 +77,10 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
             case 2:
                 error_2 = _a.sent();
                 console.log(error_2);
+                mensaje = Object.values(error_2.errors);
+                res.status(400).send({
+                    mensaje: mensaje.map(function (err) { return err.message; })
+                });
                 next();
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -84,12 +88,12 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
     });
 }); });
 exports.actualizarEvento = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var eventoAct, error_3;
+    var eventoAct, error_3, mensaje;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Event_Logs_1.EventModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })];
+                return [4 /*yield*/, Event_Logs_1.EventModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })];
             case 1:
                 eventoAct = _a.sent();
                 res.send(eventoAct);
@@ -97,6 +101,10 @@ exports.actualizarEvento = (0, express_async_handler_1.default)(function (req, r
             case 2:
                 error_3 = _a.sent();
                 console.log(error_3);
+                mensaje = Object.values(error_3.errors);
+                res.status(400).send({
+                    mensaje: mensaje.map(function (err) { return err.message; })
+                });
                 next();
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
@@ -178,6 +186,27 @@ exports.filtroTipo = (0, express_async_handler_1.default)((0, express_async_hand
             case 2:
                 error_7 = _a.sent();
                 console.log(error_7);
+                next();
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); }));
+exports.filtroTipoFecha = (0, express_async_handler_1.default)((0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var searchRegex, eventos, error_8;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                searchRegex = new RegExp(req.params.searchTerm, 'i');
+                return [4 /*yield*/, Event_Logs_1.EventModel.find({ $and: [{ tipo: { $regex: searchRegex } }, { fecha: { $gte: req.params.fecha1, $lte: req.params.fecha2 } }] })];
+            case 1:
+                eventos = _a.sent();
+                res.send(eventos);
+                return [3 /*break*/, 3];
+            case 2:
+                error_8 = _a.sent();
+                console.log(error_8);
                 next();
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];

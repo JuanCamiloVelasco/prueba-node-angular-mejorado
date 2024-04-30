@@ -21,6 +21,7 @@ export class UpdateEventComponent implements OnInit{
   eventoId!: any;
   evento!: any;
   fecha!: any;
+  errors: any = [];
 
   returnUrl = '';
 
@@ -53,18 +54,6 @@ export class UpdateEventComponent implements OnInit{
       tipo: this.evento.tipo.name,
     }
 
-    if(inputData.nombre === "" || inputData.descripcion == "") {
-      this.toastrService.error(
-        'Todos los campos son obligatorios'
-      )
-      return;
-    }
-    if (inputData.nombre.length < 5 || inputData.descripcion.length < 5) {
-      this.toastrService.error(
-        'Campos muy cortos'
-      )
-      return;
-    }
 
     console.log(inputData);
 
@@ -73,7 +62,8 @@ export class UpdateEventComponent implements OnInit{
         console.log(res);
         this.router.navigateByUrl(this.returnUrl);
       }, error: err => {
-        console.log(inputData);
+        this.errors = err.error.mensaje.concat(this.errors);
+        console.log(this.errors);
       }
     });
   }

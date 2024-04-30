@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EventosService } from '../../../services/eventos.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
@@ -9,13 +9,14 @@ import { DefaultButtonComponent } from "../../partials/default-button/default-bu
 import { NgFor } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { tipos } from 'src/app/shared/constants/tipos';
+import { InputValidationsComponent } from "../../partials/input-validations/input-validations.component";
 
 @Component({
     selector: 'app-registro-event',
     standalone: true,
     templateUrl: './registro-event.component.html',
     styleUrl: './registro-event.component.css',
-    imports: [ReactiveFormsModule, TextInputComponent, DefaultButtonComponent, RouterLink, NgFor, FormsModule, NgFor]
+    imports: [ReactiveFormsModule, TextInputComponent, DefaultButtonComponent, RouterLink, NgFor, FormsModule, NgFor, InputValidationsComponent]
 })
 export class RegistroEventComponent implements OnInit{
   registerForm!:FormGroup;
@@ -43,12 +44,6 @@ export class RegistroEventComponent implements OnInit{
 
   submit() {
     this.isSubmited = true;
-    if(this.registerForm.invalid) { 
-      this.toastrService.error(
-        `Ha ocurrido un error`,
-        'Registro invalido')
-      return;
-    }
 
     const fv = this.registerForm.value;
 

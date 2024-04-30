@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Evento } from '../../../shared/models/Eventos';
 import { EventosService } from '../../../services/eventos.service';
 import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
@@ -22,7 +22,9 @@ export class HomeComponent{
   constructor(private eventosService:EventosService, activatedRoute:ActivatedRoute,private toastrService:ToastrService, private router:Router) {
     let eventosObervable:Observable<Evento[]>;
     activatedRoute.params.subscribe((params) => {
-      if(params.searchTerm)
+      if(params.searchTerm && params.fecha1 && params.fecha2)
+        eventosObervable = this.eventosService.getAllEventosByDateAndType(params.searchTerm, params.fecha1, params.fecha2);
+      else if(params.searchTerm)
         eventosObervable = this.eventosService.getAllEventsBySearchTerm(params.searchTerm);
       else if(params.fecha1 && params.fecha2)
         eventosObervable = this.eventosService.getAllEventosByDate(params.fecha1, params.fecha2);

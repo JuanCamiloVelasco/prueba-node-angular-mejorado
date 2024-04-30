@@ -8,6 +8,7 @@ export const routes: Routes = [
     {path:'', component:HomeComponent},
     {path:'buscar/:searchTerm', component:HomeComponent},
     {path:'fecha/:fecha1/:fecha2', component:HomeComponent},
+    {path:'buscarAvanzada/:searchTerm/:fecha1/:fecha2', component:HomeComponent},
     {path:'register', component:RegistroEventComponent},
     {path:'infoEv/:id', component:PaginaEventosComponent},
     {path:'evento/:id', component:UpdateEventComponent}

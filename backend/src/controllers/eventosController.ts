@@ -7,7 +7,7 @@ export const mostrarEventos = expressAsyncHandler(async (req, res, next) => {
         res.send(eventos);
     } catch (error) {
         console.log(error);
-        next();
+        res.send(error);
     }
 });
 
@@ -18,17 +18,24 @@ export const nuevoEvento = expressAsyncHandler(async( req, res, next) => {
         res.send(evento);
     } catch (error) {
         console.log(error);
-        res.send(error);
+        let mensaje = Object.values(error.errors)
+        res.status(400).send({
+            mensaje: mensaje.map((err:any) => err.message)
+        })
         next();
     }
 });
 
 export const actualizarEvento = expressAsyncHandler ( async (req, res, next) => { 
     try {
-        const eventoAct = await EventModel.findOneAndUpdate({_id: req.params.id}, req.body, { new: true } )
+        const eventoAct = await EventModel.findOneAndUpdate({_id: req.params.id}, req.body, {  new: true, runValidators: true })
         res.send(eventoAct);
     } catch (error) {
         console.log(error);
+        let mensaje = Object.values(error.errors)
+        res.status(400).send({
+            mensaje: mensaje.map((err:any) => err.message)
+        })
         next();
     }
 });
@@ -67,6 +74,17 @@ export const filtroTipo = expressAsyncHandler(expressAsyncHandler( async (req, r
     try {
         const searchRegex = new RegExp(req.params.searchTerm, 'i');
         const eventos = await EventModel.find({tipo: {$regex:searchRegex}});
+        res.send(eventos);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+}));
+
+export const filtroTipoFecha = expressAsyncHandler(expressAsyncHandler( async (req, res, next) => {
+    try {
+        const searchRegex = new RegExp(req.params.searchTerm, 'i');
+        const eventos = await EventModel.find({$and: [{tipo: {$regex:searchRegex}}, {fecha: {$gte: req.params.fecha1, $lte:req.params.fecha2}}]});
         res.send(eventos);
     } catch (error) {
         console.log(error);

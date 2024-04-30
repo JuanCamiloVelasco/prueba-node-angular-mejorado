@@ -17,4 +17,6 @@ router.delete("/evento/:id", eventosController_1.eliminarEvento);
 router.get("/fecha/:fecha1/:fecha2", eventosController_1.filtroFechas);
 // Buscar evento por tipo
 router.get("/buscar/:searchTerm", eventosController_1.filtroTipo);
+// Buscar evento por tipo y fecha
+router.get("/buscarAvanzada/:searchTerm/:fecha1/:fecha2", eventosController_1.filtroTipoFecha);
 exports.default = router;

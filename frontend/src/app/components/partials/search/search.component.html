@@ -3,14 +3,35 @@
         <h1>Filtro de eventos</h1>
         <div class="busca">
             <h3>Filtro por tipo</h3>
-            <input #s type="text" placeholder="Busqueda Eventos" (keyup.enter)="search(s.value)" [value]="searchTerm" class="tipo"/>
-            <button (click)="search(s.value)">Buscar</button>
+            <!-- <input #s type="text" placeholder="Busqueda Eventos" (keyup.enter)="search(s.value)" [value]="searchTerm" class="tipo"/>
+            <button (click)="search(s.value)">Buscar</button> -->
+            <div class="select custom-select tipo">
+                <select #a>
+                    <option  value="" selected disabled>-- Elige un Tipo para filtrar --</option>
+                    <option #a *ngFor="let t of tipo" [ngValue]="t.name">{{t.name}}</option>
+                </select>
+            </div>
+            <button (click)="search(a.value)">Buscar</button>
         </div>
         <div class="busca">
             <h3>Filtro por fecha</h3>
             <input #e type="text" placeholder="Desde" onfocus="(this.type='date')" class="fechas2"/>
             <input #p type="text" placeholder="Hasta" onfocus="(this.type='date')" class="fechas"/>
             <button (click)="BuscaFechas(e.value, p.value)">Buscar</button>
+        </div>
+        <h1>Busqueda Avanzada</h1>
+        <div class="busca">
+            <h3>Tipo</h3>
+            <div class="select custom-select tipo">
+                <select #tipos>
+                    <option  value="" selected disabled>-- Elige un Tipo para filtrar --</option>
+                    <option #tipos *ngFor="let t of tipo" [ngValue]="t.name">{{t.name}}</option>
+                </select>
+            </div>
+            <h3> fecha </h3>
+            <input #fechas1 type="text" placeholder="Desde" onfocus="(this.type='date')" class="fechas2"/>
+            <input #fechas2 type="text" placeholder="Hasta" onfocus="(this.type='date')" class="fechas"/>
+            <button (click)="BuscaTipoFechas(tipos.value, fechas1.value, fechas2.value)">Buscar</button>
         </div>
     </div>
 </div>

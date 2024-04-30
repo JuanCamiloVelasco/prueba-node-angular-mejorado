@@ -11,17 +11,20 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
   loadingService.showLoading();
   pendingRequests = pendingRequests + 1;
   
+  function handleHideLoading(){
+    pendingRequests = pendingRequests - 1;
+    if(pendingRequests === 0)
+    loadingService.hideLoading();
+  }
+
   return next(req).pipe(
     tap({
       next:(event) => {
         if(event.type === HttpEventType.Response) {
-            pendingRequests = pendingRequests -1;
-            if (pendingRequests === 0) {
-              loadingService.hideLoading();
-          }
+          handleHideLoading()
         }
       }, error: (_) => {
-        loadingService.hideLoading();
+          handleHideLoading()
       }
     })
   );
