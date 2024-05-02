@@ -1,14 +1,17 @@
 <div class="container">
     <div class="details">
         <h1>Registro</h1>
+        <!-- Con ayuda de mi default component de imputs, creo un fromgroup los mismos -->
         <form [formGroup]="registerForm" (ngSubmit)="submit()">
             <text-input [control]="fc.nombre" [showErrorsWhen]="isSubmited" label="Nombre"></text-input>
             <text-input [control]="fc.fecha" [showErrorsWhen]="isSubmited" label="Fecha" type="date" ></text-input>
             <text-input [control]="fc.descripcion" [showErrorsWhen]="isSubmited" label="Descripcion"></text-input>
+            <!-- En este caso decidi cambiar el input por un select por lo que no pude usar mi default component -->
             <div class="select custom-select">
                 <label>Tipo</label>
                 <select formControlName="tipo">
                     <option value="" selected disabled>-- Elige un Tipo --</option>
+                    <!-- evaluo mi lista de tipos y la muestro -->
                     <option *ngFor="let t of tipo" [ngValue]="t.name">{{t.name}}</option>
                 </select>
             </div>

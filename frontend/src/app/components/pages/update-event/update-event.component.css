@@ -119,3 +119,14 @@ border-radius: 0.25rem;
 color: #000;
 cursor: pointer;
 }
+
+span {
+    color: red;
+    text-align: center;
+    font-size: 0.95rem;
+    align-items: center;
+}
+
+.has-error input{
+    border: 1px solid red;
+}

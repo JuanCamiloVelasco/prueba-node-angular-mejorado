@@ -8,6 +8,7 @@ export interface EventLogs{
     tipo:string;
 }
 
+// Creo el Schema con sus respectivas condiciones para el control de errores desde el backend
 export const EventSchema = new Schema<EventLogs>({
     nombre: {type: String, required: [true, 'El nombre es obligatorio'], minlength:[5,'El nombre es muy corto!']},
     fecha: {type: Date, required: [true, 'La fecha es obligatoria']},

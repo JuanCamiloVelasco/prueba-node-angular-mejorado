@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoadingService {
+  // mi service para la pantalla de carga que solo tiene los metodos para mostrar y ocultar la carga y un getter para que sea observable
   private isLoadingSubject = new BehaviorSubject<boolean>(false);
 
   constructor() { }

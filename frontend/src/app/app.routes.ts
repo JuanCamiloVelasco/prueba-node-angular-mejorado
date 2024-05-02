@@ -6,10 +6,13 @@ import { UpdateEventComponent } from './components/pages/update-event/update-eve
 
 export const routes: Routes = [
     {path:'', component:HomeComponent},
-    {path:'buscar/:searchTerm', component:HomeComponent},
-    {path:'fecha/:fecha1/:fecha2', component:HomeComponent},
-    {path:'buscarAvanzada/:searchTerm/:fecha1/:fecha2', component:HomeComponent},
+    
     {path:'register', component:RegistroEventComponent},
     {path:'infoEv/:id', component:PaginaEventosComponent},
-    {path:'evento/:id', component:UpdateEventComponent}
+    {path:'evento/:id', component:UpdateEventComponent},
+
+    // Filtros
+    {path:'buscar/:searchTerm', component:HomeComponent},
+    {path:'fecha/:fecha1/:fecha2', component:HomeComponent},
+    {path:'buscarAvanzada/:searchTerm/:fecha1/:fecha2', component:HomeComponent}
 ];

@@ -3,23 +3,30 @@
     <div class="details">
         <h1>Actualizar</h1>
         <div *ngIf="evento">
+            <!-- creo mi form sin mis default inputs ya que para autorrellenar los campos lo tengo que hacer de una forma diferente -->
             <form (ngSubmit)="actualizar()">
+                <!-- obtengo todos los valores de mi evento por id y los muestro con ngModel -->
                 <div class="inputs">
                     <label>Nombre</label>
-                    <div class="content">
+                    <div class="content" >
                         <input type="text" [(ngModel)]="evento.nombre" name="nombre">
+                        <!-- control de errores en caso que mi lista "errors" haya almacenado algun error proveniente del backend -->
+                        <span *ngIf="errors.nombre">{{errors.nombre.message}}</span>
                     </div>
                 </div>
+                <!-- asi con cada uno -->
                 <div class="inputs">
                     <label>Fecha</label>
                     <div class="content">
-                        <input required min="5" type="date" [(ngModel)]="fecha" name="fecha">
+                        <input type="date" [(ngModel)]="fecha" name="fecha">
+                        <span *ngIf="errors.fecha">{{errors.fecha.message}}</span>
                     </div>
                 </div>
                 <div class="inputs">
                     <label>Descripcion</label>
                     <div class="content">
                         <input type="text" [(ngModel)]="evento.descripcion" name="descripcion">
+                        <span *ngIf="errors.descripcion">{{errors.descripcion.message}}</span>
                     </div>
                 </div>
                 <div class="select custom-select">
@@ -28,6 +35,7 @@
                         <option selected disabled hidden>{{evento.tipo}}</option>
                         <option *ngFor="let tipo of tipo" [ngValue]="tipo">{{tipo.name}}</option>
                     </select>
+                    <span *ngIf="errors.tipo">{{errors.tipo.message}}</span>
                 </div>
                 <default-button text="Actualizar"></default-button>
             </form>

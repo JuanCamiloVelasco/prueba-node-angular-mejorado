@@ -9,6 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './default-button.component.css'
 })
 export class DefaultButtonComponent {
+  // Esto es para crear un boton por default el cual usara estos inputs que serviran para ser "configurado" cuando lo necesite
   @Input()
   type: 'submit' | 'button' = 'submit';
   @Input()

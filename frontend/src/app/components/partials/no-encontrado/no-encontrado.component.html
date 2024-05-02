@@ -1,3 +1,4 @@
+<!-- Si no hay ningun resultado a las consultas mostrara el mensaje de no encontrado y un link para reiniciar la busqueda  -->
 <div *ngIf="visible">
     {{mensajeNoEncontrado}}
     <a [routerLink]="resetLinkRoute">{{resetLinkText}}</a>

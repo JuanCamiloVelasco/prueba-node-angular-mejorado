@@ -17,11 +17,14 @@ app.use((0, cors_1.default)({
     credentials: true,
     origin: ["http://localhost:4200"]
 }));
+// rutas a las apis
 app.use("/api/eventlogs/", event_log_router_1.default);
+// Especifico las rutas al crear la carpeta public para el despliegue
 app.use(express_1.default.static(path_1.default.join('public', 'browser')));
 app.get('*', function (req, res) {
     res.sendFile(path_1.default.join(__dirname, 'public', 'browser', 'index.html'));
 });
+// especifico el puerto para el despliege 
 var port = process.env.PORT || 5000;
 app.listen(port, function () {
     console.log("website served on http://localhost:" + port);

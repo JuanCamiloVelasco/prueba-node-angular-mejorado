@@ -63,7 +63,7 @@ exports.mostrarEventos = (0, express_async_handler_1.default)(function (req, res
     });
 }); });
 exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var evento, error_2, mensaje;
+    var evento, error_2, mensaje, controlErrores;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -78,8 +78,12 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
                 error_2 = _a.sent();
                 console.log(error_2);
                 mensaje = Object.values(error_2.errors);
+                controlErrores = Object.values(error_2);
+                console.log(controlErrores);
+                // Envio una respuesta de status 400 para que se reciba el mensaje de error personalizado en el front
                 res.status(400).send({
-                    mensaje: mensaje.map(function (err) { return err.message; })
+                    mensaje: mensaje.map(function (err) { return err.message; }),
+                    prueba: controlErrores[0]
                 });
                 next();
                 return [3 /*break*/, 3];
@@ -88,7 +92,7 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
     });
 }); });
 exports.actualizarEvento = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var eventoAct, error_3, mensaje;
+    var eventoAct, error_3, mensaje, controlErrores;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -102,8 +106,11 @@ exports.actualizarEvento = (0, express_async_handler_1.default)(function (req, r
                 error_3 = _a.sent();
                 console.log(error_3);
                 mensaje = Object.values(error_3.errors);
+                controlErrores = Object.values(error_3);
+                // Envio una respuesta de status 400 para que se reciba el mensaje de error personalizado en el front
                 res.status(400).send({
-                    mensaje: mensaje.map(function (err) { return err.message; })
+                    mensaje: mensaje.map(function (err) { return err.message; }),
+                    controlErrores: controlErrores[0]
                 });
                 next();
                 return [3 /*break*/, 3];

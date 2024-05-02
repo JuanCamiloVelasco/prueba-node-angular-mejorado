@@ -11,6 +11,7 @@ import { LoadingService } from '../../../services/loading.service';
 })
 export class LoadingComponent {
 
+  // Componente que mostrara el logo de "cargando cuando sea necesario"
   isLoading!: boolean;
   constructor(loadingService: LoadingService) {
     loadingService.isLoading.subscribe((isLoading) => {

@@ -14,9 +14,11 @@ import { NoEncontradoComponent } from "../../partials/no-encontrado/no-encontrad
     imports: [NgIf, NoEncontradoComponent]
 })
 export class PaginaEventosComponent {
+  // creo mi variable de evento
   evento!: Evento;
   constructor(activatedRoute:ActivatedRoute, eventosService:EventosService, private router: Router) {
     activatedRoute.params.subscribe((params) => {
+      // obtengo mi evento por id para mostrar su infromacion
       if(params.id)
         eventosService.getEventoById(params.id).subscribe(eventoServer => {
           this.evento = eventoServer
@@ -24,6 +26,7 @@ export class PaginaEventosComponent {
     })
   }
 
+  // Formateo la fechaspara que sean mas faciles de leer con la ayuda de moment
   fechasFormat(fecha:Date) {
     return moment(fecha).format('DD-MM-YYYY');
   }
