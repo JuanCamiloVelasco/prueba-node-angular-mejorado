@@ -42,6 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.filtroTipoFecha = exports.filtroTipo = exports.filtroFechas = exports.eliminarEvento = exports.obtenerEvId = exports.actualizarEvento = exports.nuevoEvento = exports.mostrarEventos = void 0;
 var express_async_handler_1 = __importDefault(require("express-async-handler"));
 var Event_Logs_1 = require("../models/Event.Logs");
+var client_1 = __importDefault(require("../rabbitmq/client"));
 exports.mostrarEventos = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var eventos, error_1;
     return __generator(this, function (_a) {
@@ -67,14 +68,17 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                evento = new Event_Logs_1.EventModel(req.body);
-                return [4 /*yield*/, Event_Logs_1.EventModel.create(evento)];
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, client_1.default.produce('Evento Creado!', req.body)];
             case 1:
                 _a.sent();
-                res.send(evento);
-                return [3 /*break*/, 3];
+                evento = new Event_Logs_1.EventModel(req.body);
+                return [4 /*yield*/, Event_Logs_1.EventModel.create(evento)];
             case 2:
+                _a.sent();
+                res.send(evento);
+                return [3 /*break*/, 4];
+            case 3:
                 error_2 = _a.sent();
                 console.log(error_2);
                 mensaje = Object.values(error_2.errors);
@@ -86,8 +90,8 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
                     prueba: controlErrores[0]
                 });
                 next();
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); });
@@ -96,13 +100,16 @@ exports.actualizarEvento = (0, express_async_handler_1.default)(function (req, r
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Event_Logs_1.EventModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })];
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, client_1.default.produce('Evento Actualizado!', req.body)];
             case 1:
+                _a.sent();
+                return [4 /*yield*/, Event_Logs_1.EventModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true, runValidators: true })];
+            case 2:
                 eventoAct = _a.sent();
                 res.send(eventoAct);
-                return [3 /*break*/, 3];
-            case 2:
+                return [3 /*break*/, 4];
+            case 3:
                 error_3 = _a.sent();
                 console.log(error_3);
                 mensaje = Object.values(error_3.errors);
@@ -113,8 +120,8 @@ exports.actualizarEvento = (0, express_async_handler_1.default)(function (req, r
                     controlErrores: controlErrores[0]
                 });
                 next();
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); });
@@ -123,18 +130,21 @@ exports.obtenerEvId = (0, express_async_handler_1.default)((0, express_async_han
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Event_Logs_1.EventModel.findById({ _id: req.params.id })];
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, client_1.default.produce('Evento Obtenido!', req.params.id)];
             case 1:
+                _a.sent();
+                return [4 /*yield*/, Event_Logs_1.EventModel.findById({ _id: req.params.id })];
+            case 2:
                 eventoId = _a.sent();
                 res.send(eventoId);
-                return [3 /*break*/, 3];
-            case 2:
+                return [3 /*break*/, 4];
+            case 3:
                 error_4 = _a.sent();
                 console.log(error_4);
                 next();
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); }));
@@ -143,22 +153,25 @@ exports.eliminarEvento = (0, express_async_handler_1.default)((0, express_async_
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Event_Logs_1.EventModel.findOneAndDelete({ _id: req.params.id })];
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, client_1.default.produce('Evento Eliminado!', req.params.id)];
             case 1:
                 _a.sent();
-                res.send({ mensaje: 'El evento se ha eliminado correctamente' });
-                return [3 /*break*/, 3];
+                return [4 /*yield*/, Event_Logs_1.EventModel.findOneAndDelete({ _id: req.params.id })];
             case 2:
+                _a.sent();
+                res.send({ mensaje: 'El evento se ha eliminado correctamente' });
+                return [3 /*break*/, 4];
+            case 3:
                 error_5 = _a.sent();
                 console.log(error_5);
                 next();
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); }));
-exports.filtroFechas = (0, express_async_handler_1.default)((0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+exports.filtroFechas = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var fecha, error_6;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -177,8 +190,8 @@ exports.filtroFechas = (0, express_async_handler_1.default)((0, express_async_ha
             case 3: return [2 /*return*/];
         }
     });
-}); }));
-exports.filtroTipo = (0, express_async_handler_1.default)((0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+}); });
+exports.filtroTipo = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var searchRegex, eventos, error_7;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -198,8 +211,8 @@ exports.filtroTipo = (0, express_async_handler_1.default)((0, express_async_hand
             case 3: return [2 /*return*/];
         }
     });
-}); }));
-exports.filtroTipoFecha = (0, express_async_handler_1.default)((0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+}); });
+exports.filtroTipoFecha = (0, express_async_handler_1.default)(function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var searchRegex, eventos, error_8;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -219,5 +232,5 @@ exports.filtroTipoFecha = (0, express_async_handler_1.default)((0, express_async
             case 3: return [2 /*return*/];
         }
     });
-}); }));
+}); });
 exports.default = exports.mostrarEventos;

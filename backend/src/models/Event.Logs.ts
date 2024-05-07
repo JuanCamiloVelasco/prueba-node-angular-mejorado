@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 
 export interface EventLogs{
     id:string;
@@ -23,5 +23,15 @@ export const EventSchema = new Schema<EventLogs>({
     },
     timestamps: true
 });
+
+mongoose.plugin(schema => {
+    schema.pre('findOneAndUpdate', setRunValidators);
+    schema.pre('updateMany', setRunValidators);
+    schema.pre('updateOne', setRunValidators);
+});
+  
+function setRunValidators() {
+this.setOptions({ runValidators: true });
+}
 
 export const EventModel = model<EventLogs>('EventLogs', EventSchema);

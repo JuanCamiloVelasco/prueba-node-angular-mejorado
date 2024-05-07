@@ -1,7 +1,7 @@
 // Mis rutas - el enviorment es para el despliegue pero no funciona bien en local 
 import { environment } from "../../../environments/environment";
 // environment.production? '' :
-const BASE_URL = environment.production? '' : 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5000';
 
 // Rutas Crud
 export const EVENTLOGS_URL = BASE_URL + '/api/eventlogs';

@@ -11,6 +11,7 @@ var cors_1 = __importDefault(require("cors"));
 var database_config_1 = __importDefault(require("./configs/database.config"));
 var event_log_router_1 = __importDefault(require("./routers/event.log.router"));
 (0, database_config_1.default)();
+var client_1 = __importDefault(require("./rabbitmq/client"));
 var app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)({
@@ -28,4 +29,5 @@ app.get('*', function (req, res) {
 var port = process.env.PORT || 5000;
 app.listen(port, function () {
     console.log("website served on http://localhost:" + port);
+    client_1.default.initialize();
 });

@@ -2,13 +2,13 @@
     "compilerOptions": {
       "module": "CommonJS",
       "moduleResolution": "node",
-      "strict": true,
+      "strict": false,
       "outDir": "./built",
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
       "esModuleInterop": true,
       "useUnknownInCatchVariables": false,
-      "noImplicitAny": false
+      "noImplicitAny": false,
     },
     "include": ["src/**/*"],
 }
