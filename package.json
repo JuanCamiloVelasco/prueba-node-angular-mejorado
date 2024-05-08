@@ -6,11 +6,13 @@
     },
     "scripts": {
         "start": "cd backend/built && node server.js",
-        "startRabbit": "cd backend/built/built && node server.js",
-        "dev": "npm start && npm startRabbit",
+        "startRabbit": "cd RPC_SERVER/built && node server.js",
+        "dev": "concurrently --kill-others \"npm run start\" \"npm run startRabbit\"",
         "prebuild": "cd backend && npm run build",
         "rabbit": "cd RPC_SERVER && npm run build",
-        "build": "cd frontend && npm run build",
-        "conurr": "npm install"
+        "build": "cd frontend && npm run build"
+    },
+    "dependencies": {
+        "concurrently": "^8.2.2"
     }
 }

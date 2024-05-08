@@ -68,17 +68,14 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 3, , 4]);
+                _a.trys.push([0, 2, , 3]);
                 return [4 /*yield*/, client_1.default.produce('Evento Creado!', req.body)];
             case 1:
                 _a.sent();
                 evento = new Event_Logs_1.EventModel(req.body);
-                return [4 /*yield*/, Event_Logs_1.EventModel.create(evento)];
-            case 2:
-                _a.sent();
                 res.send(evento);
-                return [3 /*break*/, 4];
-            case 3:
+                return [3 /*break*/, 3];
+            case 2:
                 error_2 = _a.sent();
                 console.log(error_2);
                 mensaje = Object.values(error_2.errors);
@@ -90,8 +87,8 @@ exports.nuevoEvento = (0, express_async_handler_1.default)(function (req, res, n
                     prueba: controlErrores[0]
                 });
                 next();
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); });

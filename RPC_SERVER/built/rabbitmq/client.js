@@ -61,6 +61,7 @@ var RabbitMQClient = /** @class */ (function () {
             return __generator(this, function (_d) {
                 switch (_d.label) {
                     case 0:
+                        console.log("holaaaaaaaaaaa");
                         if (this.isInitialized) {
                             return [2 /*return*/];
                         }
