@@ -5,6 +5,7 @@
         "node": ">=18 <19"
     },
     "scripts": {
+        "prestart": "chmod +x node_modules/.bin/concurrently",
         "start": "cd backend/built && node server.js",
         "startRabbit": "cd RPC_SERVER/built && node server.js",
         "dev": "concurrently --kill-others \"npm run start\" \"npm run startRabbit\"",

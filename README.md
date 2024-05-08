@@ -31,3 +31,10 @@
     7. commit y push
 
 ## npm install ngx-toastr moment express-cors typescrypt nodemon ts-node mongoose dotenv express-async-handler @types
+
+
+## INTRUCCIONES PARA COORER EL CODIGO
+- cd backend + npm install
+- cd frontend + npm intall
+- cd RPC_SERVER + npm install
+- en la raiz del proyecto: npm isnstall y finalmente "run dev"
