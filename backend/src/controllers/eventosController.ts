@@ -16,6 +16,7 @@ export const nuevoEvento = expressAsyncHandler(async( req, res, next) => {
     try {
         await RabbitMQClient.produce('Evento Creado!', req.body);
         const evento = new EventModel(req.body);
+        await EventModel.create(evento);
         res.send(evento);
     } catch (error) {
         console.log(error);
